@@ -48,7 +48,7 @@ cd $HOME/cgenie.muffin/genie-main;
 
 You can replace the ./runmuffin.sh line with your specific configurations.  
 
-Please note that your $HOME space on Sherlock is only 15GB - so I wiuld encourage you to specify an OUT directory in either $OAK, $GROUP_HOME or $SCRATCH!
+Please note that your $HOME space on Sherlock is only 15GB - so I would encourage you to specify an OUT directory in either $OAK, $GROUP_HOME or $SCRATCH!
 
 ## Step 3.1: Submitting the Model as a Batch Job
 
