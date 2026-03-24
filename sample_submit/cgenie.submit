@@ -1,0 +1,12 @@
+#!/bin/bash
+# ----------------SLURM Parameters----------------
+#SBATCH --partition=serc
+#SBATCH -c 8
+#SBATCH --mem 50GB
+#SBATCH --time=4:00:00
+#SBATCH --job-name=cgenie-test
+#SBATCH --output="out_files/%A_%a.out"
+# ----------------Load Modules--------------------
+# ----------------Commands------------------------
+
+apptainer exec cgenie_latest.sif /bin/bash cgenie.sh

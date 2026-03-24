@@ -1,0 +1,52 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%post
+    # This section runs inside the container during the build process
+    apt-get update -y
+    # Add your custom installation commands here
+
+    apt install git -y
+    cd /root;
+    git clone https://github.com/derpycode/cgenie.muffin.git
+    apt install unzip -y
+    apt install make -y
+    apt install gfortran -y
+    apt install xsltproc -y
+    apt install libxml2-dev -y
+    apt install m4 -y
+    apt install libcurl4-openssl-dev -y
+    apt install libz-dev -y
+    apt install libhdf5-dev -y
+    apt install wget -y
+    apt install bc -y 
+    apt install python3 -y
+
+    wget https://downloads.unidata.ucar.edu/netcdf-c/4.9.2/netcdf-c-4.9.2.tar.gz
+    tar xzf netcdf-c-4.9.2.tar.gz
+    cd netcdf-c-4.9.2
+    
+    export LDFLAGS="-L/usr/lib/x86_64-linux-gnu/hdf5/serial/lib"
+    export CFLAGS="-I/usr/lib/x86_64-linux-gnu/hdf5/serial/include"
+    ./configure
+    make check
+    make install
+    cd ..
+    ldconfig
+
+
+    wget https://downloads.unidata.ucar.edu/netcdf-fortran/4.6.1/netcdf-fortran-4.6.1.tar.gz
+    tar xzf netcdf-fortran-4.6.1.tar.gz
+    cd netcdf-fortran-4.6.1
+    ./configure
+    make check
+    make install
+    cd ../
+
+    cd cgenie.muffin/
+    git checkout master.python3
+    cd ../
+    cd cgenie.muffin/genie-main
+     
+    ldconfig
+    make testbiogem
