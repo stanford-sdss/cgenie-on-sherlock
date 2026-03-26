@@ -1,3 +1,5 @@
+[![DOI](https://img.shields.io/badge/DOI-here-blue)](https://doi.org/10.25740/xg249tm1018)
+
 # cgenie-on-sherlock
 
 This repository contains the package and instructions necessary to run the "cgenie" model on Stanford's Sherlock cluster.
