@@ -16,18 +16,9 @@ apptainer pull oras://ghcr.io/stanford-sdss/cgenie-on-sherlock/cgenie:latest
 ```
 You should now see a file named `cgenie_latest.sif`
 
+# Step 2: Pull this repo
 
-## Step 2: Pull the cgenie repo to your home directory
-
-cgenie assumes that you are running from your home directory, so you'll need to pull the cgenie repo to your home directory.  You can do that with the following code:
-```bash
-cd $HOME;
-git clone https://github.com/derpycode/cgenie.muffin.git;
-cd cgenie.muffin;
-git checkout master.python3;
-```
-This also ensures you're using the master.python3 branch.
-
+In the same directories in which you'd like your output stored, clone this reposity.
 
 ## Step 3: Running the Model
 ## Step 3.1: Running the model interactively
@@ -44,13 +35,14 @@ Once you're allocated resources, you can run the model with the following comman
 
 ```bash
 apptainer shell cgenie_latest.sif
-cd $HOME/cgenie.muffin/genie-main;
+export CGENIE_MUFFIN_LOCATION=$PWD
+cd cgenie.muffin/genie-main;
 ./runmuffin.sh cgenie.eb_go_gs_ac_bg.worbe2.BASE LABS LAB_0.EXAMPLE 10
 ```
 
 You can replace the ./runmuffin.sh line with your specific configurations.  
 
-Please note that your $HOME space on Sherlock is only 15GB - so I would encourage you to specify an OUT directory in either $OAK, $GROUP_HOME or $SCRATCH!
+Shout out to [this repository](https://github.com/b-reyes/singularity_cgenie_muffin) for showing how to use a custom output directory!
 
 ## Step 3.1: Submitting the Model as a Batch Job
 
@@ -68,14 +60,15 @@ To submit the model as a batch job, you'll need a submit file that runs the mode
 # ----------------Load Modules--------------------
 # ----------------Commands------------------------
 
-echo "cd $HOME/cgenie.muffin/genie-main; ./runmuffin.sh cgenie.eb_go_gs_ac_bg.worbe2.BASE LABS LAB_0.EXAMPLE 10" | apptainer exec cgenie_latest.sif /bin/bash
+echo "cd cgenie.muffin/genie-main; export CGENIE_MUFFIN_LOCATION=$PWD; ./runmuffin.sh cgenie.eb_go_gs_ac_bg.worbe2.BASE LABS LAB_0.EXAMPLE 10" | apptainer exec cgenie_latest.sif /bin/bash
 ```
 
 This basically submits the interactive commands above to the `apptainer exec` command.  Alternatively, you could save those commands in a file, and input it like this:
 
 Contents of cgenie.sh:
 ```
-cd $HOME/cgenie.muffin/genie-main;
+cd cgenie.muffin/genie-main;
+export CGENIE_MUFFIN_LOCATION=$PWD
 ./runmuffin.sh cgenie.eb_go_gs_ac_bg.worbe2.BASE LABS LAB_0.EXAMPLE 10
 ```
 
