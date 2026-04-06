@@ -121,7 +121,7 @@ userconfig = 'prefered_prefix.dat';
 restart = '';
 year = '10000';
 baseconfig = 'baseconfig_name.config'; 
-subdir = 'cgenie.muffin/genie-userconfigs/subdir'; %subfolder within genie-userconfigs that you are saving userconfigs
+subdir = 'subdir'; %subfolder within genie-userconfigs that you are saving userconfigs
 
 %------------ Don't modify
 userconfig_list = dir(fullfile(pwd, [userconfig '*']));
