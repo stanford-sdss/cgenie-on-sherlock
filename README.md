@@ -182,4 +182,5 @@ apptainer exec \
 
 ```
 
-Run in your console 'submit_ensemble.sh'. 
+Run in your console $sbatch submit_ensemble.sh
+
