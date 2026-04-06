@@ -140,8 +140,8 @@ writetable(T, 'ensembles.txt', 'Delimiter', ' ', 'WriteVariableNames', false); %
 ```
 ### Step 3.3d Submit Ensemble as Batch Job
 
-Transfer 'ensembles.txt' to your HOME directory (or whereever you are running cGENIE.muffin iteratively).
-To submit a batch job of an ensemble you want a file 'cgenie.sh'.
+Transfer 'ensembles.txt' to your HOME directory (or wherever you are running cGENIE.muffin iteratively).
+To submit a batch job of an ensemble, you want a file 'cgenie.sh' will the following contents.
 
 ```bash
 #!/bin/bash
@@ -156,7 +156,7 @@ And a file 'submit_ensemble.sh'
 #!/bin/bash
 #SBATCH --job-name=genie-ensemble
 #SBATCH --output="cgenie_output/%A_%a.out"
-#SBATCH --array=0-24
+#SBATCH --array=0-24         # for a 5x5 grid. Change depending on your ensemble size
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
